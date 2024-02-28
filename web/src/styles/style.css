@@ -1,20 +1,161 @@
-section {
+:root {
+  --primary: #002ac1;
+  --secondary: #11005c;
+  --white: #fff;
+  --black: #24292f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#navbar {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  padding: 10px;
+  transition: all 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  padding: 1.2rem 2rem;
+}
+#navbar .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+#navbar .nav-item {
+  display: flex;
+  align-items: center;
+}
+#navbar .social {
+  justify-content: flex-end;
+}
+#navbar .social .is-link {
+  padding: 0.5rem;
+  color: var(--white);
+}
+#navbar .link {
+  justify-content: center;
+  display: flex;
+  gap: 1.5rem;
+}
+#navbar .link .is-link {
+  color: var(--white);
+  text-transform: capitalize;
+}
+#navbar.min {
+  background-color: #fff;
+  border-radius: 50px;
+  width: 75vw;
+  top: 1.5rem;
+  color: var(--black);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#navbar.min .link .is-link {
+  color: var(--black);
+}
+#navbar.min .social .is-link {
+  color: var(--primary);
+}
+
+#home {
+  position: relative;
+}
+#home .content-holder {
+  width: 100vw;
+  height: 75vh;
+  background-image: linear-gradient(190deg, #002ac1, #11005c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#home .text {
+  color: var(--white);
+  position: fixed;
+  width: 100%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#tsparticles {
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#about, #contact, #blog {
+  background-color: #fff;
+}
+
+#blog {
+  background-color: #fff;
+}
+
+#contact {
+  background-color: #000;
+}
+
+#footer {
+  position: sticky;
+  bottom: 0;
+  z-index: -1;
+  background-color: #000;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40svh;
+}
+
+#products {
+  position: relative;
+}
+#products .product {
   position: sticky;
   top: 0;
-  height: calc(100svh + 1px);
+}
+
+section {
+  position: relative;
+  height: 100svh;
   width: 100vw;
   perspective: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3rem;
-  margin-bottom: 1px;
-  scroll-snap-align: center;
-  transform: translateY(100vh);
-  transition: 1s;
 }
 section.inView {
   transform: translateY(0);
+  margin-bottom: 0;
+}
+section .bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
 .image img {

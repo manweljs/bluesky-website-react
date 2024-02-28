@@ -11,6 +11,18 @@ interface ProductType {
     paragraph: string[];
 }
 
+export default function Products() {
+
+    return (
+        <div id='products'>
+            {productList.map((product, index) => (
+                <Product key={index} product={product} />
+            ))}
+        </div>
+
+    )
+}
+
 
 
 const Product = ({ product }: { product: ProductType }) => {
@@ -21,9 +33,7 @@ const Product = ({ product }: { product: ProductType }) => {
     console.log('element in view', isInView)
 
     return (
-        <section ref={ref} className={isInView ? "inView" : ""}
-            style={{ backgroundImage: `linear-gradient(150deg, #fff, ${product.color})` }}
-        >
+        <section ref={ref} className={isInView ? "product inView" : "product"}>
             <div className="columns">
                 <motion.div className="column text">
                     <h2>{product.title}</h2>
@@ -38,27 +48,18 @@ const Product = ({ product }: { product: ProductType }) => {
                     <img src={product.image} alt={product.title} />
                 </motion.div>
             </div>
-
+            <div className="bg"
+                style={{ backgroundImage: `linear-gradient(150deg, #fff, ${product.color})` }}
+            ></div>
         </section>
-    )
-}
-
-export default function Products() {
-
-
-    return (
-        <div className='products'>
-            {products.map((product, index) => (
-                <Product key={index} product={product} />
-            ))}
-        </div>
 
     )
 }
 
 
 
-const products = [
+
+const productList = [
     {
         title: "OptimizeDC",
         description: "Unlock the full potential of your data center operations",
