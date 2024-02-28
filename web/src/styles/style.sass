@@ -1,0 +1,27 @@
+// html
+//     scroll-snap-type: y mandatory
+
+// .products
+//     scroll-snap-type: y mandatory
+
+section
+    position: sticky
+    top: 0
+    height: calc( 100svh + 1px )
+    width: 100vw
+    perspective: 500px
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 3rem
+    margin-bottom: 1px
+    scroll-snap-align: center
+    transform: translateY(100vh)
+    transition: 1s
+
+    &.inView
+        transform: translateY(0)
+
+.image img
+    width: 200px
+    height: 200px
