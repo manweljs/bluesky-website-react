@@ -7,6 +7,28 @@
 html
     scroll-behavior: smooth
 
+body
+    font-family: Bai Jamjuree, sans-serif
+    background-image: linear-gradient(190deg,#002ac1,#11005c)
+
+::-webkit-scrollbar
+    width: .65rem
+
+/* Mengatur background track dari scrollbar (bagian yang tidak terpakai oleh thumb) */
+::-webkit-scrollbar-track
+    background: #fff
+    -webkit-box-shadow: none
+
+/* Mengatur tampilan dari thumb scrollbar (bagian yang bisa digeser) */
+::-webkit-scrollbar-thumb
+    border: 2px solid #fff
+    border-radius: 10px
+    background: #b8b8b8
+
+/* Mengubah warna thumb scrollbar saat di-hover atau di-klik */
+::-webkit-scrollbar-thumb:hover
+    background: #9c9c9c
+
 h1
     font-size: 4rem
 
@@ -16,9 +38,23 @@ h2
 h6
     font-size: 1.2rem
 
-h1, h2, h3, h4, h5, h6
+h1, h2, h3, h4, h5
     font-weight: 700
     margin-bottom: 1rem
+
+section
+    position: relative
+    min-height: 100svh
+    width: 100vw
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 3rem
+    background-color: var(--white)
+    z-index: 1
+
+.columns
+    margin: 0!important
 
 #navbar
     position: fixed
@@ -28,10 +64,26 @@ h1, h2, h3, h4, h5, h6
     transition: all 0.3s ease
     left: 50%
     transform: translateX(-50%)
-    width: 100vw
-    padding: 1.2rem 2rem
+    padding: .75rem 1rem
+    width: 70vw
+    max-width: 1440px
+
+    &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: var(--white)
+        z-index: -1
+        transition: all 0.3s ease
+        box-shadow: 0 0 10px rgba(0, 0,0,.1)
+        transform: translateY(-120px)
+        border-radius: 50px
 
     .container
+        max-width: 1440px
         display: grid
         grid-template-columns: repeat(3, 1fr)
 
@@ -56,12 +108,12 @@ h1, h2, h3, h4, h5, h6
             text-transform: capitalize
 
     &.min
-        background-color: #fff
         border-radius: 50px
-        width: 75vw
-        top: 1.5rem
+        top: 1rem
         color: var(--black)
-        box-shadow: 0 0 10px rgba(0, 0,0,.1)
+
+        &::before
+            transform: translateY(0)
 
         .link .is-link
             color: var(--black)
@@ -70,23 +122,49 @@ h1, h2, h3, h4, h5, h6
 
 #home
     position: relative
+    z-index: 1
+    background-image: linear-gradient(190deg,#002ac1,#11005c)
+    padding: 0
 
     .content-holder
+        position: relative
+        z-index: 1
         width: 100vw
-        height: 75vh
-        background-image: linear-gradient(190deg,#002ac1,#11005c)
-        display: flex
-        justify-content: center
-        align-items: center
-        text-align: center
+        height: 100%
+        display: grid
+        grid-template-rows: 75vh 25vh
 
-    .text
+    .text-box
+        position: relative
         color: var(--white)
-        position: fixed
-        width: 100%
-        top: 30%
-        left: 50%
-        transform: translate(-50%, 0)
+        display: grid
+        place-content: center
+
+        .animation-container
+            position: fixed
+            top: 30svh
+            width: 100%
+            left: 50%
+            transform: translate(-50%, 0)
+            text-align: center
+            z-index: -1
+
+    .image-box
+        background-color: var(--white)
+        height: 100%
+        position: relative
+
+        .images
+            width: 100%
+            position: absolute
+            bottom: 2rem
+            display: flex
+            justify-content: center
+            align-items: flex-end
+            gap: 3rem
+
+        img
+            height: 16rem
 
 #tsparticles
     position: absolute
@@ -94,7 +172,8 @@ h1, h2, h3, h4, h5, h6
     height: 100%
     width: 100%
 
-#about, #contact, #blog
+#about, #contact, #blog, #products, #collaboration
+    z-index: 2
     background-color: #fff
 
 #blog
@@ -116,32 +195,42 @@ h1, h2, h3, h4, h5, h6
 
 #products
     position: relative
+    display: block
+    padding: 0
 
     .product
         position: sticky
         top: 0
+        height: 100svh
+        isolation: isolate
 
-section
-    position: relative
-    height: calc( 100svh )
-    width: 100vw
-    perspective: 500px
-    display: flex
-    justify-content: center
-    align-items: center
-    padding: 3rem
+        .bg
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            left: 0
+            z-index: -1
 
-    &.inView
-        transform: translateY(0)
-        margin-bottom: 0
+#navbar
 
-    .bg
-        position: absolute
-        top: 0
-        height: 100%
-        width: 100%
-        z-index: -1
+    #main-logo
+        height: 50px
+        .st0
+            fill-rule: evenodd
+            clip-rule: evenodd
+            fill: var(--white)
+        .st1
+            fill: var(--white)
+        .st2
+            fill-rule: evenodd
+            clip-rule: evenodd
+            fill: var(--white)
 
-.image img
-    width: 200px
-    height: 200px
+    &.min #main-logo
+        .st0
+            fill: #1F2B3B
+        .st1
+            fill: #02488F
+        .st2
+            fill: #02488F

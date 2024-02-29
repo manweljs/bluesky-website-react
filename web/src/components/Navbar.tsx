@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { navList, socialMedia } from '../store'
 import { useScroll } from 'framer-motion';
+import { SVG } from '../store/svg';
 export default function Navbar() {
 
   const [minimized, setMinimized] = useState(false);
@@ -8,7 +9,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const unsubscribe = scrollY.on('change', (latest) => {
-      console.log('Scroll Y Position:', latest);
+      // console.log('Scroll Y Position:', latest);
       if (latest > 600) {
         setMinimized(true);
       } else {
@@ -25,7 +26,7 @@ export default function Navbar() {
 
         <div className="nav-item brand">
           <a href="#home">
-            <span>BlueSky Creations</span>
+            {SVG.logo}
           </a>
         </div>
 

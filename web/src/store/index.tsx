@@ -1,65 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 
-interface ProductType {
-    title: string;
-    description: string;
-    image: string;
-    button: string;
-    color: string;
-    paragraph: string[];
-}
+import img1 from "../img/Image-1.png"
+import img2 from "../img/Image-2.png"
+import img3 from "../img/Image-3.png"
 
-export default function Products() {
+export const navList = [
+    "home",
+    "about",
+    "collaboration",
+    "products",
+    "blog",
+    "contact",
+]
 
-    return (
-        <div id='products'>
-            {productList.map((product, index) => (
-                <Product key={index} product={product} />
-            ))}
-        </div>
+export const socialMedia = [
+    {
+        name: "LinkedIn",
+        link: "https://www.linkedin.com/company/bluesky-creations/",
+        icon: "lab la-linkedin-in"
+    },
+    {
+        name: "Facebook",
+        link: "https://www.facebook.com/BlueSkyCreationsSoftware/",
+        icon: "lab la-facebook-f"
+    },
 
-    )
-}
+]
+
+export const homeImages = [img1, img2, img3]
 
 
-
-const Product = ({ product }: { product: ProductType }) => {
-
-    const ref = useRef(null);
-    const isInView = useInView(ref);
-
-    console.log('element in view', isInView)
-
-    return (
-        <section ref={ref} className={isInView ? "product inView" : "product"}>
-            <div className="columns">
-                <motion.div className="column text">
-                    <h2>{product.title}</h2>
-                    <p>{product.description}</p>
-                    {product.paragraph.map((paragraph, index) => (
-                        <p key={index}>{paragraph}</p>
-                    ))}
-                    <button>{product.button}</button>
-                </motion.div>
-
-                <motion.div className="column image" ref={ref}>
-                    <img src={product.image} alt={product.title} />
-                </motion.div>
-            </div>
-            <div className="bg"
-                style={{ backgroundImage: `linear-gradient(150deg, #fff, ${product.color})` }}
-            ></div>
-        </section>
-
-    )
+export const contents = {
+    heading: {
+        title: "Welcome to BlueSky Creations",
+        subtitle: "Optimal decision making, making the uncertain more certain."
+    }
 }
 
 
 
-
-const productList = [
+export const productList = [
     {
         title: "OptimizeDC",
         description: "Unlock the full potential of your data center operations",

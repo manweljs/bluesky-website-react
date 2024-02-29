@@ -1,9 +1,10 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 export default function Blog() {
     return (
-        <section id="blog">
+        <motion.section id="blog">
             <h2>Blog</h2>
-        </section>
+        </motion.section>
     )
 }

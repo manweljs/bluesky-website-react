@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { motion } from 'framer-motion'
 export default function Contact() {
     return (
-        <section id='contact'>
+        <motion.section id='contact'>
             <h2 >Contact</h2>
-        </section>
+        </motion.section>
     )
 }

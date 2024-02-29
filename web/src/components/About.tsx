@@ -1,9 +1,12 @@
 import React from 'react'
-
+import { motion } from 'framer-motion'
 export default function About() {
+
     return (
-        <section id='about'>
+        <motion.section id='about'
+
+        >
             <h2 >About</h2>
-        </section>
+        </motion.section>
     )
 }
