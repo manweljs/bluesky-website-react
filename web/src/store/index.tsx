@@ -3,14 +3,8 @@ import img1 from "../img/Image-1.png"
 import img2 from "../img/Image-2.png"
 import img3 from "../img/Image-3.png"
 
-export const navList = [
-    "home",
-    "about",
-    "collaboration",
-    "products",
-    "blog",
-    "contact",
-]
+export const sections = ['home', 'about', 'collaboration', 'products', 'blog', 'contact',];
+
 
 export const socialMedia = [
     {

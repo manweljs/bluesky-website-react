@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { productList } from '../store';
-import { Slides } from './Slides';
 interface ProductType {
     title: string;
     description: string;
@@ -16,11 +14,9 @@ export default function Products() {
 
     return (
         <motion.section id='products' >
-            <Slides>
-                {productList.map((product, index) => (
-                    <Product product={product} />
-                ))}
-            </Slides>
+            {productList.map((product, index) => (
+                <Product product={product} />
+            ))}
         </motion.section>
 
     )
