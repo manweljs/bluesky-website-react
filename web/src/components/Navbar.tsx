@@ -1,83 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { sections, socialMedia } from '../store'
 import { SVG } from '../store/svg';
-import { useNavigate } from 'react-router-dom';
-
+import { useAppContext } from '../context';
+import { motion } from "framer-motion"
 
 
 export default function Navbar() {
 
   const [minimized, setMinimized] = useState(false);
-  const [currentSection, setCurrentSection] = useState(0);
+  const { page, setPage } = useAppContext()
 
-  const handleScroll = (e: WheelEvent) => {
-    const direction = e.deltaY > 0 ? 1 : -1
-    if (shouldUseCustomScroll(direction)) {
-      console.log('Menggunakan custom scroll');
-      e.preventDefault();
-      if (direction > 0) {
-        // Scroll ke bawah
-        console.log('masuk - sini')
-        setCurrentSection((prev: number) => {
-          const nextSection = Math.min(sections.length - 1, prev + 1);
-          return nextSection;
-        });
-
-      } else if (direction < 0) {
-        console.log('masuk - sana')
-
-        // Scroll ke atas
-        setCurrentSection((prev) => {
-
-          const prevSection = Math.max(0, prev - 1);
-          return prevSection;
-        });
-      }
-
-    } else {
-      console.log('Menggunakan default scroll');
-    }
-
-  };
-
+  console.log('page --->', page)
   useEffect(() => {
-    const page = sections[currentSection];
 
-    if (currentSection !== 0) {
+    if (page !== "home") {
       setMinimized(true)
     } else {
       setMinimized(false)
     }
 
-    window.location.href = `#${page.toLowerCase()}`
+  }, [page]);
 
-  }, [currentSection]);
 
-  useEffect(() => {
-    window.addEventListener('wheel', handleScroll, { passive: false });
-    return () => window.removeEventListener('wheel', handleScroll);
-  }, []);
+  const handleClick = (target: string) => {
 
-  const shouldUseCustomScroll = (direction: number) => {
-    // Misalnya, kamu bisa memeriksa apakah scroll sudah mencapai batas tertentu,
-    // atau berdasarkan state atau props tertentu yang menentukan "mode" scroll.
-    // Contoh sederhana:
-    let isNextPage = false
-    if (direction > 0) {
-      const n = 5
-      const h = document.documentElement.scrollHeight;
-      const y = window.innerHeight + window.scrollY + n
-      isNextPage = y >= h;
-
-    } else {
-      const y = window.scrollY
-      console.log('y', y)
-      isNextPage = y <= 0;
-    }
-
-    return isNextPage;
-  };
-
+    setPage(target.replace("#", ""))
+    window.location.href = target
+  }
 
   return (
     <div id='navbar' className={minimized ? "min" : ""}>
@@ -91,15 +40,17 @@ export default function Navbar() {
 
         <div className="nav-item link">
           {sections.map((item, index) => (
-            <a href={`#${item.toLowerCase()}`} key={index} className='is-link'>
+            <motion.div
+              style={{ cursor: "pointer" }}
+              onClick={() => handleClick(`#${item.toLowerCase()}`)} key={index} className='is-link'>
               <span>{item}</span>
-            </a>
+            </motion.div>
           ))}
         </div>
 
         <div className="nav-item social">
           {socialMedia.map((item, index) => (
-            <a href={item.link} key={index} className='is-link'>
+            <a href={item.link} target='_blank' key={index} className='is-link'>
               <i className={`${item.icon}`} ></i>
             </a>
           ))}

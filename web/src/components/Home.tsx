@@ -4,6 +4,7 @@ import { loadSlim } from "@tsparticles/slim"
 import type { Container, Engine } from "@tsparticles/engine";
 import { contents, homeImages } from '../store';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Transition } from './Transition';
 
 const HeadingAnimation = ({ text }: { text: string }) => {
     // Pisahkan teks menjadi kata-kata, lalu setiap kata menjadi huruf
@@ -32,37 +33,29 @@ const HeadingAnimation = ({ text }: { text: string }) => {
 
 export default function Home() {
     return (
-        <AnimatePresence
-            mode="wait"
-        >
-            <motion.section id='home'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 2, type: "spring" }}
-            >
-                <ParticlesContainer />
-                <div className="content-holder" >
-                    <div className="text-box">
-                        <div className="animation-container">
-                            <HeadingAnimation text={contents.heading.title} />
-                            <motion.h6
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.5, type: "spring", duration: 0.5 }}
-                            >{contents.heading.subtitle}</motion.h6>
-                        </div>
-                    </div>
-                    <div className="image-box">
-                        <div className="images">
-                            {homeImages.map((image, index) => (
-                                <img src={image} alt="" key={index} />
-                            ))}
-                        </div>
+
+        <section id='home' >
+            <ParticlesContainer />
+            <div className="content-holder" >
+                <div className="text-box">
+                    <div className="animation-container">
+                        <HeadingAnimation text={contents.heading.title} />
+                        <motion.h6
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.5, type: "spring", duration: 0.5 }}
+                        >{contents.heading.subtitle}</motion.h6>
                     </div>
                 </div>
-            </motion.section>
-        </AnimatePresence>
+                <div className="image-box">
+                    <div className="images">
+                        {homeImages.map((image, index) => (
+                            <img src={image} alt="" key={index} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 

@@ -1,13 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Transition } from './Transition'
-export default function Collaboration() {
+
+export default function HomeTest() {
 
     return (
         <Transition>
-            <motion.section id='collaboration'>
-                <h2>Collaboration</h2>
+            <motion.section id='about'>
+                <h2>HomeTest</h2>
             </motion.section>
+
         </Transition>
     )
 }

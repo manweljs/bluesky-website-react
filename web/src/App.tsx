@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
 import APPRouter from './router';
 
 
 const App = () => {
 
-  return (
-    <APPRouter />
-  );
+  return <APPRouter />
 };
 
 
