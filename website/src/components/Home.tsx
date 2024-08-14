@@ -7,6 +7,7 @@ import { contents, homeImages } from '@/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Transition, anim } from './Transition';
 import Image from 'next/image';
+import s from "@/styles/style.module.sass"
 
 const HeadingAnimation = ({ text }: { text: string }) => {
     // Pisahkan teks menjadi kata-kata, lalu setiap kata menjadi huruf
@@ -61,30 +62,28 @@ export default function Home() {
     }
 
     return (
-        <Transition>
-            <section id='home' >
-                <ParticlesContainer />
-                <div className="content-holder" >
-                    <div className="text-box">
-                        <div className="animation-container">
-                            <HeadingAnimation text={contents.heading.title} />
-                            <motion.h6
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.5, type: "spring", duration: 0.5 }}
-                            >{contents.heading.subtitle}</motion.h6>
-                        </div>
+        <section id='home' className={s.home} >
+            <ParticlesContainer />
+            <div className={s.content_holder} >
+                <div className={s.text_box}>
+                    <div className={s.animation_container}>
+                        <HeadingAnimation text={contents.heading.title} />
+                        <motion.h6
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.5, type: "spring", duration: 0.5 }}
+                        >{contents.heading.subtitle}</motion.h6>
                     </div>
-                    <motion.div className="image-box" {...anim(imageBoxVariants)}>
-                        <div className="images">
-                            {homeImages.map((image, index) => (
-                                <Image src={image} alt="" key={index} height={300} width={300} />
-                            ))}
-                        </div>
-                    </motion.div>
                 </div>
-            </section>
-        </Transition>
+                <motion.div className={s.image_box} {...anim(imageBoxVariants)}>
+                    <div className={s.images}>
+                        {homeImages.map((image, index) => (
+                            <Image src={image} alt="" key={index} height={300} width={300} priority />
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
+        </section>
     )
 }
 
@@ -110,6 +109,7 @@ const ParticlesContainer = () => {
             {init &&
                 <Particles
                     id="tsparticles"
+                    className={s.tsparticles}
                     particlesLoaded={particlesLoaded}
                     options={{
                         background: {

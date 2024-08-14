@@ -1,8 +1,14 @@
+@import "./_variables.module"
+@import "./utility.module"
+
 .bluesky
     --primary: #002ac1
     --secondary: #11005c
+    --base: #fff
+    --base-2: #f8f8f8
     --white: #fff
-    --black: #24292f
+    --text: #24292f
+    --black: #161616
 
     font-family: Bai Jamjuree, sans-serif
     background-image: linear-gradient(190deg,#002ac1,#11005c)
@@ -31,28 +37,40 @@
     h2
         font-size: 3rem
 
+    h3
+        font-size: 2rem
+
+    h4
+        font-size: 1.5rem
+
+    h5
+        font-size: 1.25rem
+
     h6
-        font-size: 1.2rem
+        font-size: 1rem
 
     h1, h2, h3, h4, h5
         font-weight: 700
         margin-bottom: 1rem
+        line-height: 1.5
+
+    p
+        line-height: 2
 
     section
         position: relative
         min-height: 100svh
-        width: 100vw
+        width: 100%
         display: flex
         justify-content: center
         align-items: center
         padding: 3rem
-        background-color: var(--white)
         z-index: 1
 
 .transition-cover
     z-index: 3
     height: 100vh
-    width: 100vw
+    width: 100%
     position: fixed
     top: 0
     left: 0
@@ -70,7 +88,7 @@
     left: 50%
     transform: translateX(-50%)
     padding: .75rem 1rem
-    width: 70vw
+    width: 90%
     max-width: 1440px
 
     &::before
@@ -92,15 +110,16 @@
         display: grid
         grid-template-columns: repeat(3, 1fr)
 
-    .nav-item
+    .nav_item
         display: flex
         align-items: center
 
     .social
         justify-content: flex-end
+        align-items: center
+        padding-right: 1rem
 
-        .is-link
-            padding: .5rem
+        button
             color: var(--white)
 
     .link
@@ -108,7 +127,7 @@
         display: flex
         gap: 1.5rem
 
-        .is-link
+        .is_link
             color: var(--white)
             text-transform: capitalize
 
@@ -120,18 +139,18 @@
         &::before
             transform: translateY(0)
 
-        .link .is-link
+        .link .is_link
             color: var(--black)
-        .social .is-link
+        .social button
             color: var(--primary)
 
-#home
+.home
     position: relative
     z-index: 1
     background-image: linear-gradient(190deg,#002ac1,#11005c)
-    padding: 0
+    padding: 0!important
 
-    .content-holder
+    .content_holder
         position: relative
         z-index: 1
         width: 100vw
@@ -139,13 +158,13 @@
         display: grid
         grid-template-rows: 75vh 25vh
 
-    .text-box
+    .text_box
         position: relative
         color: var(--white)
         display: grid
         place-content: center
 
-        .animation-container
+        .animation_container
             position: fixed
             top: 30svh
             width: 100%
@@ -154,7 +173,7 @@
             text-align: center
             z-index: -1
 
-    .image-box
+    .image_box
         background-color: var(--white)
         height: 100%
         position: relative
@@ -171,23 +190,30 @@
         img
             height: 16rem
 
-#tsparticles
+.tsparticles
     position: absolute
-    z-index: 0
+    z-index: -1
     height: 100%
     width: 100%
 
-#about, #contact, #blog, #products, #collaboration
+.about, .contact, .blog, .products, .collaboration
     z-index: 2
     // background-color: var(--white)
 
-#blog
+.about
+    background-color: var(--base)
+
+.collaboration
+    background-color: var(--base-2)
+
+.blog
     background-color: #fff
 
-#contact
-    background-color: #000
+.contact
+    background-color: var(--black)
+    color: var(--white)
 
-#footer
+.footer
     position: sticky
     bottom: 0
     z-index: -1
@@ -198,44 +224,44 @@
     align-items: center
     height: 40svh
 
-#products
+.products
     position: relative
     display: block
     padding: 0
 
     .product
-        position: sticky
-        top: 0
-        height: 100svh
-        isolation: isolate
+        .container
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            grid-template-areas: 'text image'
 
-        .bg
-            width: 100%
-            height: 100%
-            position: absolute
-            top: 0
-            left: 0
-            z-index: -1
+        .logo
+            margin-bottom: 1rem
+
+    .product:nth-child(odd)
+        .container
+            grid-template-areas: 'image text'
 
 .navbar
-
-    #main-logo
+    .main_logo
         height: 50px
-        .st0
-            fill-rule: evenodd
-            clip-rule: evenodd
-            fill: var(--white)
-        .st1
-            fill: var(--white)
-        .st2
-            fill-rule: evenodd
-            clip-rule: evenodd
-            fill: var(--white)
+        :global
+            .st0
+                fill-rule: evenodd
+                clip-rule: evenodd
+                fill: var(--white)
+            .st1
+                fill: var(--white)
+            .st2
+                fill-rule: evenodd
+                clip-rule: evenodd
+                fill: var(--white)
 
-    &.min #main-logo
-        .st0
-            fill: #1F2B3B
-        .st1
-            fill: #02488F
-        .st2
-            fill: #02488F
+    &.min .main_logo
+        :global
+            .st0
+                fill: #1F2B3B
+            .st1
+                fill: #02488F
+            .st2
+                fill: #02488F

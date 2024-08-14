@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { sections, socialMedia } from '@/store'
 import { SVG } from '@/store/svg';
 import { useAppContext } from '@/context';
-import { motion } from "framer-motion"
+import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 import s from "@/styles/style.module.sass"
 import { cls } from '@/utils';
+import { Button } from 'antd';
+import FIcon from './ui/FIcon';
 
 
 export default function Navbar() {
 
   const [minimized, setMinimized] = useState(false);
-  const { page, setPage } = useAppContext()
+  const { page, setPage, navigate } = useAppContext()
 
-  console.log('page --->', page)
   useEffect(() => {
 
     if (page !== "home") {
@@ -31,31 +32,42 @@ export default function Navbar() {
     window.location.href = target
   }
 
-  return (
-    <div id='navbar' className={cls(s.navbar, minimized && s.min)}>
-      <div className="container">
+  const { scrollY } = useScroll()
 
-        <div className="nav-item brand">
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    // console.log("Page scroll: ", latest)
+    latest > 400 ? setMinimized(true) : setMinimized(false)
+  })
+
+  return (
+    <div className={cls(s.navbar, minimized && s.min)}>
+      <div className={s.container}>
+
+        <div className={cls(s.nav_item, s.brand)}>
           <a href="#home">
             {SVG.logo}
           </a>
         </div>
 
-        <div className="nav-item link">
+        <div className={cls(s.nav_item, s.link)}>
           {sections.map((item, index) => (
             <motion.div
               style={{ cursor: "pointer" }}
-              onClick={() => handleClick(`#${item.toLowerCase()}`)} key={index} className='is-link'>
+              onClick={() => handleClick(`#${item.toLowerCase()}`)} key={index} className={s.is_link}>
               <span>{item}</span>
             </motion.div>
           ))}
         </div>
 
-        <div className="nav-item social">
+        <div className={cls(s.nav_item, s.social)}>
           {socialMedia.map((item, index) => (
-            <a href={item.link} target='_blank' key={index} className='is-link'>
-              <i className={`${item.icon}`} ></i>
-            </a>
+            <Button
+              key={index}
+              icon={<FIcon name={item.icon} pointer />}
+              type='text'
+              onClick={() => navigate(item.link, true)}
+            />
           ))}
         </div>
       </div>

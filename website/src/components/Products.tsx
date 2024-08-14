@@ -1,11 +1,22 @@
+"use client";
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
-import { productList } from '../store';
+import { productList } from '@/store';
+import Image from 'next/image';
+import s from "@/styles/style.module.sass"
+import { Container } from './ui/Container';
+import { cls } from '@/utils';
+import { Button, ConfigProvider } from 'antd';
+import { useAppContext } from '@/context';
+
 interface ProductType {
     title: string;
-    description: string;
-    image: string;
-    button: string;
+    logo: string;
+    image?: React.ReactNode;
+    button: null | {
+        title: string;
+        href: string;
+    };
     color: string;
     paragraph: string[];
 }
@@ -13,41 +24,57 @@ interface ProductType {
 export default function Products() {
 
     return (
-        <motion.section id='products' >
+        <motion.div id='products' className={s.products} >
             {productList.map((product, index) => (
-                <Product product={product} />
+                <Product product={product} key={index} />
             ))}
-        </motion.section>
+        </motion.div>
 
     )
 }
 
 
-
 const Product = ({ product }: { product: ProductType }) => {
-
+    const { navigate } = useAppContext()
     return (
-        <div className="product">
-            <div className="container">
-                <div className="columns">
-                    <motion.div className="column text">
-                        <h2>{product.title}</h2>
-                        <p>{product.description}</p>
+        <ConfigProvider
+            theme={{ token: { colorPrimary: product.color } }}
+        >
+            <section
+                className={s.product}
+                style={{ backgroundImage: `linear-gradient(150deg, #fff, ${product.color})` }}
+            >
+                <Container className={s.container}>
+                    <motion.div className={s.text}>
+                        <Image
+                            className={s.logo}
+                            src={product.logo}
+                            alt={product.title}
+                            width={250}
+                            height={60}
+                        />
+                        <h3>{product.title}</h3>
                         {product.paragraph.map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                         ))}
-                        <button>{product.button}</button>
+                        {product.button &&
+                            <Button
+                                onClick={() => navigate(product.button?.href as string, true)}
+                                shape='round'
+                                type='primary'
+                                ghost
+                            >
+                                {product.button?.title}
+                            </Button>
+                        }
                     </motion.div>
 
-                    <motion.div className="column image" >
-                        <img src={product.image} alt={product.title} />
+                    <motion.div className={s.image} >
+                        {product.image}
                     </motion.div>
-                </div>
-            </div>
-            <div className="bg"
-                style={{ backgroundImage: `linear-gradient(150deg, #fff, ${product.color})` }}
-            ></div>
-        </div>
+                </Container>
+            </section>
+        </ConfigProvider>
 
     )
 }

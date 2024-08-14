@@ -1,5 +1,6 @@
 "use client";
 import { AppProvider } from '@/context'
+import AntdRegistry from '@/context/AntdRegistry';
 import React from 'react'
 
 export default function Wrapper(
@@ -7,7 +8,9 @@ export default function Wrapper(
 ) {
     return (
         <AppProvider>
-            {children}
+            <AntdRegistry>
+                {children}
+            </AntdRegistry>
         </AppProvider>
     )
 }

@@ -1,9 +1,11 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useEffect } from 'react';
 
 interface AppContextType {
     page: string;
     setPage: Dispatch<SetStateAction<string>>;
+    navigate: (path: string, _blank?: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -14,8 +16,22 @@ interface AppProviderProps {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [page, setPage] = useState<string>('home');
+    const router = useRouter();
 
-    const value = { page, setPage };
+    const navigate = (path: string, _blank?: boolean | "_blank") => {
+        if (_blank) {
+            window.open(path, '_blank');
+        } else {
+            router.push(path);
+        }
+    }
+
+    const value = { page, setPage, navigate };
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        window.scrollTo(0, 0);
+    }, []);
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
