@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import { sections, socialMedia } from '@/store'
-import { SVG } from '@/store/svg';
+import { Logo } from '@/store/svg';
 import { useAppContext } from '@/context';
 import { motion, useMotionValueEvent, useScroll } from "framer-motion"
-import s from "@/styles/style.module.sass"
+import s from "./Navbar.module.sass"
 import { cls } from '@/utils';
 import { Button } from 'antd';
-import FIcon from './ui/FIcon';
+import FIcon from '../ui/FIcon';
 import { usePathname } from 'next/navigation';
+import { NavbarMobile } from './NavbarMobile';
 
 
 export default function Navbar() {
@@ -44,7 +45,7 @@ export default function Navbar() {
   }, [pathName])
 
 
-  const handleClick = (target: string) => {
+  const handleNavClick = (target: string) => {
     console.log('pathName', pathName)
     console.log('target', target)
     if (pathName === "/") {
@@ -77,46 +78,54 @@ export default function Navbar() {
 
 
   return (
-    <div className={cls(s.navbar, minimized && s.min)}>
-      <div className={s.container}>
+    <div className={s.navbar_container}>
 
-        <div className={cls(s.nav_item, s.brand)}>
-          <div onClick={() => handleClick(`/#home`)} style={{ cursor: "pointer" }}>
-            {SVG.logo}
+      <div className={cls(s.navbar, minimized && s.min)}>
+        <div className={s.container}>
+
+          <div className={cls(s.nav_item, s.brand)}>
+            <div onClick={() => handleNavClick(`/#home`)} style={{ cursor: "pointer" }}>
+              <Logo className={s.main_logo} />
+            </div>
           </div>
-        </div>
 
-        <div className={cls(s.nav_item, s.link)}>
-          {sections.map((item, index) => (
-            <motion.div
-              style={{ cursor: "pointer" }}
-              onClick={() => handleClick(`/#${item}`)} key={index}
-              className={cls(s.is_link, slide === index && s.active)}
-            >
-              <span>{item}</span>
-              {slide === index &&
-                <motion.span
-                  layoutId='underline'
-                  className={s.underline}
-                  style={{ originY: "top" }}
-                />
-              }
-            </motion.div>
+          <div className={cls(s.nav_item, s.link)}>
+            {sections.map((item, index) => (
+              <motion.div
+                style={{ cursor: "pointer" }}
+                onClick={() => handleNavClick(`/#${item}`)} key={index}
+                className={cls(s.is_link, slide === index && s.active)}
+              >
+                <span>{item}</span>
+                {slide === index &&
+                  <motion.span
+                    layoutId='underline'
+                    className={s.underline}
+                    style={{ originY: "top" }}
+                  />
+                }
+              </motion.div>
 
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className={cls(s.nav_item, s.social)}>
-          {socialMedia.map((item, index) => (
-            <Button
-              key={index}
-              icon={<FIcon name={item.icon} pointer />}
-              type='text'
-              onClick={() => navigate(item.link, true)}
-            />
-          ))}
+          <div className={cls(s.nav_item, s.social)}>
+            {socialMedia.map((item, index) => (
+              <Button
+                key={index}
+                icon={<FIcon name={item.icon} pointer />}
+                type='text'
+                onClick={() => navigate(item.link, true)}
+              />
+            ))}
+          </div>
+
+
         </div>
       </div>
+
+      <NavbarMobile handleNavClick={handleNavClick} />
+
     </div>
   )
 }

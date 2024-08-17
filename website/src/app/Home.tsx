@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, EffectCreative, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import About from '@/components/About';
@@ -8,7 +8,7 @@ import Collaboration from '@/components/Collaboration';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/navbar/Navbar';
 import Product from '@/components/Product';
 import { useAppContext } from '@/context';
 import { productList } from '@/store';
@@ -17,6 +17,21 @@ import dynamic from 'next/dynamic';
 const Blog = dynamic(() => import('@/components/Blog'), { ssr: false });
 
 export default function Home() {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 1024);
+        };
+
+        handleResize(); // Set awal
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const nestedSwiperRef = useRef<any | null>(null);
     const { slide, setSlide, swiperRef, allowSlideNext, setAllowSlideNext,
@@ -71,10 +86,25 @@ export default function Home() {
         }
     };
 
+    if (isMobile) {
+        return (
+            <main >
+                <Navbar />
+                <Hero />
+                <About />
+                <Collaboration />
+                {productList.map((product, index) => (
+                    <Product product={product} key={index} />
+                ))}
+                <Blog />
+                <Contact />
+            </main>
+        );
+    }
     return (
         <div style={{ backgroundColor: "#000" }}>
             <Navbar />
-            <div style={{ height: '100vh' }}>
+            <div style={{ height: '100svh' }}>
                 <Swiper
                     ref={swiperRef}
                     direction="vertical"

@@ -21,7 +21,6 @@ export default function Contact() {
                     </div>
                     <ContactForm />
                 </div>
-
             </Container>
             <Footer />
         </motion.section>

@@ -1,0 +1,257 @@
+@use '../../styles/style.module' as *
+
+.navbar_container
+    position: fixed
+    z-index: 99
+    top: 0
+    left: 0
+    width: 100%
+
+.navbar
+    position: fixed
+    z-index: 99
+    top: 0
+    padding: 10px
+    transition: all 0.3s ease
+    left: 50%
+    transform: translateX(-50%)
+    padding: .75rem 1rem
+    width: 90%
+    max-width: 1440px
+
+    &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: var(--white)
+        z-index: -1
+        transition: all 0.3s ease
+        box-shadow: 0 0 10px rgba(0, 0,0,.1)
+        transform: translateY(-120px)
+        border-radius: 50px
+
+    .container
+        max-width: 1440px
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+
+    .nav_item
+        display: flex
+        align-items: center
+        position: relative
+
+    .social
+        justify-content: flex-end
+        align-items: center
+        padding-right: 1rem
+
+        button
+            color: var(--white)
+
+    .link
+        justify-content: center
+        display: flex
+        gap: 1.5rem
+
+        .is_link
+            color: var(--white)
+            text-transform: capitalize
+            position: relative
+
+        .underline
+            position: absolute
+            bottom: -1rem
+            left: 0
+            width: 100%
+            height: 2px
+            background-color: var(--primary)
+            border-radius: 1rem
+
+    &.min
+        border-radius: 50px
+        top: 1rem
+        color: var(--black)
+
+        &::before
+            transform: translateY(0)
+
+        .link .is_link
+            color: var(--black)
+            &.active
+                color: var(--primary)
+        .social button
+            color: var(--primary)
+
+.navbar, .navbar_mobile
+    .main_logo
+        height: 50px
+        :global
+            .st0
+                fill-rule: evenodd
+                clip-rule: evenodd
+                fill: var(--white)
+            .st1
+                fill: var(--white)
+            .st2
+                fill-rule: evenodd
+                clip-rule: evenodd
+                fill: var(--white)
+
+    &.min .main_logo
+        :global
+            .st0
+                fill: #1F2B3B
+            .st1
+                fill: #02488F
+            .st2
+                fill: #02488F
+
+.navbar_mobile .main_logo
+    :global
+        .st0
+            fill: #1F2B3B
+        .st1
+            fill: #02488F
+        .st2
+            fill: #02488F
+
+// NAV MOBILE
+.navbar_mobile
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: var(--white)
+    padding: 1rem
+    border-radius: 50px
+    position: relative
+    margin: 1rem
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1)
+    opacity: 0
+    visibility: hidden
+
+    .brand
+        display: flex
+        align-items: center
+        gap: 1rem
+
+    .nav_menu_items
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        opacity: 0
+        visibility: hidden
+
+        &.open
+            opacity: 1
+            visibility: visible
+
+    .links
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        z-index: 4
+        color: var(--white)
+        text-transform: capitalize
+        font-size: 3rem
+        font-weight: 800
+        padding: 2rem
+
+        .link
+            margin-bottom: 1rem
+            transform: translateY(-30px)
+            opacity: 0
+            transition: .3s
+
+        &.open
+            .link
+                opacity: 1
+                transform: translateX(0)
+
+.navbar_mobile .hamburger
+    position: relative
+    width: 45px
+    height: 45px
+    display: block
+    padding: 12px
+    display: flex
+    justify-content: center
+    align-items: flex-end
+    flex-direction: column
+    border-radius: 100px
+    background-color: #f6f6f6
+    cursor: pointer
+    z-index: 5
+
+    div
+        width: 100%
+        height: 2px
+        border-bottom: 2px solid var(--black)
+        transition: .3s
+        &:not(:nth-of-type(1))
+            margin-top: 4px
+        &:nth-of-type(1)
+            width: 100%
+        &:nth-of-type(2)
+            width: 80%
+        &:nth-of-type(3)
+            width: 60%
+
+    &.open
+        div
+            &:nth-of-type(1)
+                width: 100%
+                transform: rotate(45deg) translate(.22em, .18em)
+            &:nth-of-type(3)
+                width: 100%
+                transform: rotate(-45deg) translate(.38em, -.32em)
+            &:nth-of-type(2)
+                width: 0
+
+        .background div
+            display: block
+
+.navbar_mobile .background
+    div
+        width: 100%
+        height: 20svh
+        font-size: 2.5em
+        font-weight: 800
+        cursor: pointer
+        color: white
+        overflow: hidden
+        transition: .3s
+        transform: translateX(-100%)
+
+        &:nth-of-type(1)
+            transition-delay: .1s
+        &:nth-of-type(2)
+            transition-delay: .2s
+        &:nth-of-type(3)
+            transition-delay: .3s
+        &:nth-of-type(4)
+            transition-delay: .2s
+        &:nth-of-type(5)
+            transition-delay: .1s
+    img
+        width: 100%
+        object-fit: cover
+        position: absolute
+        bottom: -100px
+        left: 0
+        filter: grayscale(1) brightness(2)
+
+.navbar_mobile .background.open div
+    transform: translateX(0)
+
+@media screen and (max-width: 1080px)
+    .navbar
+        display: none
+
+    .navbar_mobile
+        opacity: 1
+        visibility: visible

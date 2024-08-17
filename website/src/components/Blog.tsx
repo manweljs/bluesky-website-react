@@ -20,7 +20,6 @@ export default function Blog() {
                         appId={APP_ID}
                     />
                 </CoreProvider>
-
             </div>
         </motion.section>
     )
