@@ -1,0 +1,76 @@
+.outline_image
+    svg
+        path, line, polyline, polygon
+            fill: none
+            stroke: var(--black)
+
+.outline_image
+    &.image1
+        width: 100%
+        height: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+
+        path, polygon
+            animation: dash-2 20s alternate infinite
+
+        line, polyline
+            animation: dash-3 20s alternate infinite
+
+    &.image2
+        position: absolute
+        bottom: 0
+        right: 0
+        width: 90vh
+        height: 90vh
+        display: flex
+        justify-content: flex-end
+        align-items: flex-end
+        padding: 2rem
+
+.outline_image
+    &.metaopt.image1
+        svg
+            width: 80%
+    &.metaopt.image2
+        svg
+            width: 90%
+
+    &.squirrelhr.image1
+        svg
+            width: 70%
+    &.squirrelhr.image2
+        svg
+            height: 90%
+
+    &.optimizedc.image1
+        svg
+            width: 70%
+
+    &.optimizedc.image2
+        bottom: -120px
+        svg
+            width: 70%
+
+    &.agency_connect.image1
+        svg
+            width: 50%
+
+    &.agency_connect.image2
+        bottom: -120px
+        svg
+            width: 70%
+
+    &.recruitcomplete.image1
+        svg
+            width: 60%
+
+    &.recruitcomplete.image2
+        bottom: -120px
+        svg
+            width: 45%
+
+    &.blueskystudio.image1
+        svg
+            width: 80%

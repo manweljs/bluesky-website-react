@@ -9,6 +9,10 @@ interface AppContextType {
     slide: number;
     setSlide: Dispatch<SetStateAction<number>>;
     swiperRef: React.RefObject<any>;
+    allowSlideNext: boolean;
+    setAllowSlideNext: Dispatch<SetStateAction<boolean>>;
+    allowSlidePrev: boolean;
+    setAllowSlidePrev: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -22,6 +26,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [slide, setSlide] = useState<number>(0);
     const router = useRouter();
     const swiperRef = useRef<any | null>(null);
+    const [allowSlideNext, setAllowSlideNext] = useState(true);
+    const [allowSlidePrev, setAllowSlidePrev] = useState(true);
 
     const navigate = (path: string, _blank?: boolean | "_blank") => {
         if (_blank) {
@@ -37,7 +43,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         navigate,
         slide,
         setSlide,
-        swiperRef
+        swiperRef,
+        allowSlideNext,
+        setAllowSlideNext,
+        allowSlidePrev,
+        setAllowSlidePrev,
     };
 
     useEffect(() => {

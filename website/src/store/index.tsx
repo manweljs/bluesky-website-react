@@ -1,6 +1,11 @@
 import { title } from "process";
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 import { MetaOPTImage, MetaOPTImage2 } from "./outline-images/MetaOPT";
+import { SquirrelImage, SquirrelImage2 } from "./outline-images/Squirrel";
+import { OptimizeDCImage, OptimizeDCImage2 } from "./outline-images/OptimizeDC";
+import { AgencyConnectImage, AgencyConnectImage2 } from "./outline-images/AgencyConnect";
+import { RecruitCompleteImage, RecruitCompleteImage2 } from "./outline-images/RecruitComplete";
+import { BlueSkyStudioImage } from "./outline-images/BlueSkyStudio";
 
 
 export const sections = ['home', 'about', 'collaboration', 'products', 'blog', 'contact',];
@@ -73,8 +78,8 @@ export const productList = [
             and an employee’s first day to their last, 
             Squirrel not only makes all people management processes pain free, but enjoyable.`
         ],
-        image1: <MetaOPTImage />,
-        image2: <MetaOPTImage2 />,
+        image1: <SquirrelImage />,
+        image2: <SquirrelImage2 />,
     },
     {
         id: "OptimizeDC",
@@ -93,8 +98,8 @@ export const productList = [
             `OptimizeDC is designed to provide you with the best 
             results and take your data center operations to the next level.`
         ],
-        image1: <MetaOPTImage />,
-        image2: <MetaOPTImage2 />,
+        image1: <OptimizeDCImage />,
+        image2: <OptimizeDCImage2 />,
     },
     {
         id: "AgencyConnect",
@@ -112,8 +117,8 @@ export const productList = [
 
             `Small business or large enterprise? Our advanced analytics, optimization algorithms, and artificial intelligence can help you flourish in the labor market.`
         ],
-        image1: <MetaOPTImage />,
-        image2: <MetaOPTImage2 />,
+        image1: <AgencyConnectImage />,
+        image2: <AgencyConnectImage2 />,
     },
     {
         id: "RecruitComplete",
@@ -131,8 +136,8 @@ export const productList = [
             `Recruit Complete combines a range of Bluesky’s solutions to cater specifically for recruiters, 
             HR managers and business owner to better manage recruitment and their people.`
         ],
-        image1: <MetaOPTImage />,
-        image2: <MetaOPTImage2 />,
+        image1: <RecruitCompleteImage />,
+        image2: <RecruitCompleteImage2 />,
     },
     {
         id: "BlueSkyStudio",
@@ -146,7 +151,7 @@ export const productList = [
 
             `Collaborate with us to solve complex business problems and take your business to new heights.`
         ],
-        image1: <MetaOPTImage />,
-        image2: <MetaOPTImage2 />,
+        image1: <BlueSkyStudioImage />,
+        image2: null,
     },
 ]

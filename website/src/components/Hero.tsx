@@ -101,7 +101,7 @@ const ParticlesContainer = () => {
     }, []);
 
     const particlesLoaded = async (container: Container | undefined) => {
-        console.log("container ->", container);
+        // console.log("container ->", container);
     };
 
     return (

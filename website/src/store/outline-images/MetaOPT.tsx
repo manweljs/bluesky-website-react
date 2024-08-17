@@ -2,7 +2,7 @@ import React from 'react';
 import s from "../../styles/style.module.sass";
 import { cls } from '@/utils';
 
-export const MetaOPTImage = ({ className }: { className?: string }) => <div className={cls(s.outline_image, s.image1, className)}>
+export const MetaOPTImage = () => <div className={cls(s.outline_image, s.image1, s.metaopt)}>
     <svg viewBox="0 0 630.3 412.2">
         <path pathLength="1" className="st0"
             d="M1069.8,79.9C1069.8,79.9,1069.8,80,1069.8,79.9" />
@@ -344,7 +344,7 @@ export const MetaOPTImage = ({ className }: { className?: string }) => <div clas
     </svg>
 </div>
 
-export const MetaOPTImage2 = ({ className }: { className?: string }) => <div className={cls(s.outline_image, s.image2, className)}>
+export const MetaOPTImage2 = () => <div className={cls(s.outline_image, s.image2, s.metaopt)}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 828.91 410.79">
         <path pathLength="1" id="Shape" className="cls-1"
             d="M319.08,404.92l-9.16,5.37L223.42,383h-.11q9.31-1.44,18.61-3.05l7.43-1.34,4.44-.82,5.91-1.12,5.28-1c10.24-1.95,19.68-3.9,28.44-6l22.67,19.54c6.81,5.66,8.1,12.77,3,15.7Z" />

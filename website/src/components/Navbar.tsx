@@ -13,7 +13,7 @@ import FIcon from './ui/FIcon';
 export default function Navbar() {
 
   const [minimized, setMinimized] = useState(false);
-  const { page, setPage, navigate, slide, setSlide, swiperRef } = useAppContext()
+  const { page, setPage, navigate, slide, setSlide, swiperRef, setAllowSlideNext, setAllowSlidePrev } = useAppContext()
 
   useEffect(() => {
 
@@ -27,8 +27,14 @@ export default function Navbar() {
 
 
   const handleClick = (target: number) => {
+    const swiper = swiperRef.current?.swiper
+    if (!swiper) return
+    setAllowSlideNext(true)
+    setAllowSlidePrev(true)
+    setTimeout(() => {
+      swiper.slideTo(target)
+    }, 0)
 
-    swiperRef.current?.swiper.slideTo(target)
   }
 
   const { scrollY } = useScroll()
@@ -38,6 +44,8 @@ export default function Navbar() {
     // console.log("Page scroll: ", latest)
     latest > 400 ? setMinimized(true) : setMinimized(false)
   })
+
+  console.log('slide === ', slide)
 
   return (
     <div className={cls(s.navbar, minimized && s.min)}>
@@ -53,9 +61,19 @@ export default function Navbar() {
           {sections.map((item, index) => (
             <motion.div
               style={{ cursor: "pointer" }}
-              onClick={() => handleClick(index)} key={index} className={s.is_link}>
+              onClick={() => handleClick(index)} key={index}
+              className={cls(s.is_link, slide === index && s.active)}
+            >
               <span>{item}</span>
+              {slide === index &&
+                <motion.span
+                  layoutId='underline'
+                  className={s.underline}
+                  style={{ originY: "top" }}
+                />
+              }
             </motion.div>
+
           ))}
         </div>
 

@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, EffectCreative, Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import About from '@/components/About';
-import Blog from '@/components/Blog';
+// import Blog from '@/components/Blog';
 import Collaboration from '@/components/Collaboration';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -12,13 +12,17 @@ import Navbar from '@/components/Navbar';
 import Product from '@/components/Product';
 import { useAppContext } from '@/context';
 import { productList } from '@/store';
+import dynamic from 'next/dynamic';
+
+const Blog = dynamic(() => import('@/components/Blog'), { ssr: false });
 
 export default function Home() {
 
     const nestedSwiperRef = useRef<any | null>(null);
-    const { slide, setSlide, swiperRef } = useAppContext();
-    const [allowSlideNext, setAllowSlideNext] = useState(true);
-    const [allowSlidePrev, setAllowSlidePrev] = useState(true);
+    const { slide, setSlide, swiperRef, allowSlideNext, setAllowSlideNext,
+        allowSlidePrev, setAllowSlidePrev
+    } = useAppContext();
+
     const [nestedAtEnd, setNestedAtEnd] = useState(false);
     const [nestedAtBeginning, setNestedAtBeginning] = useState(true);
 

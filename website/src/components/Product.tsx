@@ -61,12 +61,8 @@ export default function Product({ product }: { product: ProductType }) {
                     </motion.div>
 
                     <motion.div className={s.images} >
-                        <div className={s.image1}>
-                            {product.image1}
-                        </div>
-                        <div className={s.image2}>
-                            {product.image2}
-                        </div>
+                        {product.image1}
+                        {product.image2}
                     </motion.div>
                 </Container>
             </section>
