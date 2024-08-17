@@ -1,11 +1,14 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 interface AppContextType {
     page: string;
     setPage: Dispatch<SetStateAction<string>>;
     navigate: (path: string, _blank?: boolean) => void;
+    slide: number;
+    setSlide: Dispatch<SetStateAction<number>>;
+    swiperRef: React.RefObject<any>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -16,7 +19,9 @@ interface AppProviderProps {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [page, setPage] = useState<string>('home');
+    const [slide, setSlide] = useState<number>(0);
     const router = useRouter();
+    const swiperRef = useRef<any | null>(null);
 
     const navigate = (path: string, _blank?: boolean | "_blank") => {
         if (_blank) {
@@ -26,7 +31,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         }
     }
 
-    const value = { page, setPage, navigate };
+    const value = {
+        page,
+        setPage,
+        navigate,
+        slide,
+        setSlide,
+        swiperRef
+    };
 
     useEffect(() => {
         if (typeof window === 'undefined') return;

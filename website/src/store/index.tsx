@@ -1,5 +1,6 @@
 import { title } from "process";
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
+import { MetaOPTImage, MetaOPTImage2 } from "./outline-images/MetaOPT";
 
 
 export const sections = ['home', 'about', 'collaboration', 'products', 'blog', 'contact',];
@@ -51,7 +52,9 @@ export const productList = [
             platform enables you to submit your data and receive optimized results in 
             just minutes. With the ability to integrate GPT technology and chatbots,
              Meta OPT is always evolving to meet your needs.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
     {
         id: "SquirrelHR",
@@ -69,7 +72,9 @@ export const productList = [
             manage and retain their top talent. From hiring through to payroll, 
             and an employee’s first day to their last, 
             Squirrel not only makes all people management processes pain free, but enjoyable.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
     {
         id: "OptimizeDC",
@@ -87,7 +92,9 @@ export const productList = [
 
             `OptimizeDC is designed to provide you with the best 
             results and take your data center operations to the next level.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
     {
         id: "AgencyConnect",
@@ -104,7 +111,9 @@ export const productList = [
             Enjoy genuine efficiencies in the labor hire industry with our comprehensive suite of products.`,
 
             `Small business or large enterprise? Our advanced analytics, optimization algorithms, and artificial intelligence can help you flourish in the labor market.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
     {
         id: "RecruitComplete",
@@ -121,7 +130,9 @@ export const productList = [
 
             `Recruit Complete combines a range of Bluesky’s solutions to cater specifically for recruiters, 
             HR managers and business owner to better manage recruitment and their people.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
     {
         id: "BlueSkyStudio",
@@ -134,6 +145,8 @@ export const productList = [
              Our team has decades of experience in AI, machine learning, and optimization.`,
 
             `Collaborate with us to solve complex business problems and take your business to new heights.`
-        ]
+        ],
+        image1: <MetaOPTImage />,
+        image2: <MetaOPTImage2 />,
     },
 ]

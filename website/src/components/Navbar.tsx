@@ -13,23 +13,22 @@ import FIcon from './ui/FIcon';
 export default function Navbar() {
 
   const [minimized, setMinimized] = useState(false);
-  const { page, setPage, navigate } = useAppContext()
+  const { page, setPage, navigate, slide, setSlide, swiperRef } = useAppContext()
 
   useEffect(() => {
 
-    if (page !== "home") {
+    if (slide > 0) {
       setMinimized(true)
     } else {
       setMinimized(false)
     }
 
-  }, [page]);
+  }, [slide]);
 
 
-  const handleClick = (target: string) => {
+  const handleClick = (target: number) => {
 
-    setPage(target.replace("#", ""))
-    window.location.href = target
+    swiperRef.current?.swiper.slideTo(target)
   }
 
   const { scrollY } = useScroll()
@@ -54,7 +53,7 @@ export default function Navbar() {
           {sections.map((item, index) => (
             <motion.div
               style={{ cursor: "pointer" }}
-              onClick={() => handleClick(`#${item.toLowerCase()}`)} key={index} className={s.is_link}>
+              onClick={() => handleClick(index)} key={index} className={s.is_link}>
               <span>{item}</span>
             </motion.div>
           ))}

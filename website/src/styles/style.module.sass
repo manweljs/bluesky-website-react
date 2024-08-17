@@ -1,5 +1,6 @@
-@import "./_variables.module"
+@import "./variables.module"
 @import "./utility.module"
+@import "./animation.module"
 
 .bluesky
     --primary: #002ac1
@@ -224,23 +225,22 @@
     align-items: center
     height: 40svh
 
-.products
-    position: relative
-    display: block
-    padding: 0
+.product
+    .container
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        grid-template-areas: 'text image'
 
-    .product
-        .container
-            display: grid
-            grid-template-columns: repeat(2, 1fr)
-            grid-template-areas: 'text image'
+    .logo
+        margin-bottom: 1rem
 
-        .logo
-            margin-bottom: 1rem
+    .text
+        grid-area: text
+        padding: 1rem
 
-    .product:nth-child(odd)
-        .container
-            grid-template-areas: 'image text'
+    .images
+        grid-area: image
+        padding: 1rem
 
 .navbar
     .main_logo
@@ -265,3 +265,27 @@
                 fill: #02488F
             .st2
                 fill: #02488F
+
+.outline_image
+    svg
+        path, line, polyline, polygon
+            fill: none
+            stroke: var(--black)
+
+    &.image1
+        path, polygon
+            animation: dash-2 20s alternate infinite
+
+        line, polyline
+            animation: dash-3 20s alternate infinite
+
+    &.image2
+        position: absolute
+        bottom: 0
+        right: 0
+        width: 90vh
+        height: 90vh
+        display: flex
+        justify-content: flex-end
+        align-items: flex-end
+        padding: 2rem

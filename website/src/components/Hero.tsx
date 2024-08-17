@@ -35,7 +35,7 @@ const HeadingAnimation = ({ text }: { text: string }) => {
 };
 
 
-export default function Home() {
+export default function Hero() {
     const imageBoxVariants = {
         initial: {
             opacity: 1,

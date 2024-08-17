@@ -8,11 +8,13 @@ import { Container } from './ui/Container';
 import { cls } from '@/utils';
 import { Button, ConfigProvider } from 'antd';
 import { useAppContext } from '@/context';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface ProductType {
     title: string;
     logo: string;
-    image?: React.ReactNode;
+    image1: React.ReactNode;
+    image2: React.ReactNode;
     button: null | {
         title: string;
         href: string;
@@ -21,20 +23,9 @@ interface ProductType {
     paragraph: string[];
 }
 
-export default function Products() {
-
-    return (
-        <motion.div id='products' className={s.products} >
-            {productList.map((product, index) => (
-                <Product product={product} key={index} />
-            ))}
-        </motion.div>
-
-    )
-}
 
 
-const Product = ({ product }: { product: ProductType }) => {
+export default function Product({ product }: { product: ProductType }) {
     const { navigate } = useAppContext()
     return (
         <ConfigProvider
@@ -69,8 +60,13 @@ const Product = ({ product }: { product: ProductType }) => {
                         }
                     </motion.div>
 
-                    <motion.div className={s.image} >
-                        {product.image}
+                    <motion.div className={s.images} >
+                        <div className={s.image1}>
+                            {product.image1}
+                        </div>
+                        <div className={s.image2}>
+                            {product.image2}
+                        </div>
                     </motion.div>
                 </Container>
             </section>
