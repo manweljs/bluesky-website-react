@@ -62,7 +62,7 @@ export default function Hero() {
     }
 
     return (
-        <section id='home' className={s.home} >
+        <section className={s.home} >
             <ParticlesContainer />
             <div className={s.content_holder} >
                 <div className={s.text_box}>

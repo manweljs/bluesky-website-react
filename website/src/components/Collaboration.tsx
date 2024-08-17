@@ -46,7 +46,7 @@ export default function Collaboration() {
     }, [slide]);
 
     return (
-        <motion.section id='collaboration' className={s.collaboration}>
+        <motion.section className={s.collaboration}>
             <Container className={s.container}>
                 <h3>Coles and IBM Collaboration</h3>
                 <p>

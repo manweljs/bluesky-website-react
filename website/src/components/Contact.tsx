@@ -11,7 +11,7 @@ import { cls } from '@/utils';
 export default function Contact() {
     return (
 
-        <motion.section id='contact' className={cls(s.contact, s.section)}>
+        <motion.section className={cls(s.contact, s.section)}>
             <Container className={s.container}>
                 <h3>Ready to see the power of <span className={s.text_primary}>Bluesky Creations</span>  in action?</h3>
                 <p>Contact us today to schedule a demo and discover how we can help you optimize your business</p>

@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function Footer() {
     const year = new Date().getFullYear()
     return (
-        <div id="footer" className={s.footer}>
+        <div className={s.footer}>
             <Image src="bluesky-icon.svg" alt="bluesky" width={50} height={50} />
 
             <div className={s.links}>

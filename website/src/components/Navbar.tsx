@@ -36,7 +36,10 @@ export default function Navbar() {
       const currentHash = window.location.hash.replace('#', '');
       console.log('currentHash', currentHash)
       const changeSlide = sections.indexOf(currentHash)
-      handleSlideChange(changeSlide)
+      setTimeout(() => {
+        handleSlideChange(changeSlide)
+      }, 500)
+
     }
   }, [pathName])
 

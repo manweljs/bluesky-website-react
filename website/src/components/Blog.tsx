@@ -10,7 +10,7 @@ import { APP_ID } from '@/consts';
 
 export default function Blog() {
     return (
-        <motion.section id="blog" className={s.blog}>
+        <motion.section className={s.blog}>
             <div className={s.blog_wrapper}>
                 <h3>Blog</h3>
                 <CoreProvider

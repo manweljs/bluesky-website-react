@@ -7,7 +7,7 @@ import { Container } from './ui/Container';
 export default function About() {
 
     return (
-        <motion.section id='about' className={s.about}>
+        <motion.section className={s.about}>
             <Container className={s.container}>
                 <h2><span className={s.text_primary}>About: </span> Who we are and what we stand for</h2>
                 <p>
