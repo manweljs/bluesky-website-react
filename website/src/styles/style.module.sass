@@ -3,6 +3,8 @@
 @import "./animation.module"
 @import "./outline_image.module"
 
+$footer_height: 200px
+
 .bluesky
     --primary: #002ac1
     --secondary: #11005c
@@ -11,6 +13,7 @@
     --white: #fff
     --text: #24292f
     --black: #161616
+    --navbar-height: 70px
 
     font-family: Bai Jamjuree, sans-serif
     background-image: linear-gradient(190deg,#002ac1,#11005c)
@@ -246,20 +249,69 @@
         display: grid
         grid-template-columns: 1fr
 
-.contact
+.contact.section
     background-color: var(--black)
     color: var(--white)
+    flex-direction: column
+    padding: 3rem 0 0 0!important
+    display: grid
+    grid-template-rows: 1fr $footer_height
+    grid-auto-columns: 1fr
+    width: 100%
+
+    .container
+        width: 100%
+        padding-top: 4rem
+
+        h3, p
+            text-align: center
+
+    .contact_container
+        display: grid
+        grid-template-columns: 1fr 1fr
+        margin-top: 2.5rem
+
+        .image
+            padding: 2rem
+
+    .contact_form
+        padding: 0 2rem
+        max-width: 600px
 
 .footer
-    position: sticky
     bottom: 0
     z-index: -1
     background-color: #000
-    padding: 3rem
+    padding: 1rem
     display: flex
     justify-content: center
     align-items: center
-    height: 40svh
+    flex-direction: column
+    width: 100%
+    height: $footer_height
+
+    img
+        filter: brightness(2) grayscale(1)
+
+    .links
+        display: flex
+        gap: 1rem
+        margin: 1rem 0
+
+        .link
+            color: var(--white)
+            font-size: .85rem
+            text-decoration: none
+            opacity: .7
+            transition: all .2s
+
+            &:hover
+                opacity: 1
+
+    .copyright
+        font-size: .85rem
+        opacity: .7
+        color: var(--white)
 
 .product
     .container

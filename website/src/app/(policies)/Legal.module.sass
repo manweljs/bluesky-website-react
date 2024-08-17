@@ -1,0 +1,129 @@
+@property --var1
+    syntax: "<color>"
+    inherits: true
+    initial-value: white
+
+.policies
+    background-color: var(--base)
+
+    section
+        display: block
+        min-height: 0
+
+    .legal_heading
+        padding: 5rem 1rem
+
+    strong
+        font-weight: 700
+
+    h2, strong
+        text-transform: capitalize
+
+    h2
+        font-size: 1.25rem
+        color: var(--text-color)
+
+    h3
+        font-size: 1rem
+        color: var(--text-color)
+
+    h4
+        font-size: 1rem
+        font-weight: 500
+
+    p, li
+        font-size: .9rem
+        line-height: 1.5
+        margin-bottom: .75rem
+
+    table
+        width: 100%
+        border-collapse: collapse
+        margin-bottom: 1rem
+        border-bottom: 1px solid var(--border-color)
+        background-color: var(--base)
+
+        th, td
+            border: 1px solid var(--border-color)
+            padding: .5rem
+            font-size: .9rem
+
+    .section
+        padding: 3rem 1rem!important
+        overflow: unset
+
+.policies_wrapper
+    display: grid
+    grid-template-columns: 300px 1fr
+    grid-template-areas: "sidebar content"
+    gap: 2rem
+    max-width: 100%
+
+    .contents
+        width: 100%
+        grid-area: content
+        box-sizing: border-box
+        max-width: 100%
+        overflow: hidden
+
+        section
+            padding: 2rem
+            background-color: var(--base)
+            margin-bottom: 1rem
+            max-width: 100%
+            box-sizing: border-box
+            transition: all .2s
+
+    .toc
+        grid-area: sidebar
+        position: sticky
+        top: calc( var(--navbar-height) + 1rem )
+        padding: .5rem
+        background-color: var(--base-2)
+        border-radius: .5rem
+        font-size: 0.9rem
+        height: max-content
+        max-height: calc( 100svh - var(--navbar-height) - 4rem)
+        overflow-y: auto
+        width: 100%
+        transition: --var1 .5s
+
+        &:hover
+            --var1: var(--primary)
+
+        &::-webkit-scrollbar-thumb
+            background: transparent
+
+        &::-webkit-scrollbar
+            background: white
+            width: 8px
+
+        &::-webkit-scrollbar-thumb
+            background: var(--var1)
+
+        li
+            cursor: pointer
+            padding: 0.5rem
+            font-size: .85rem
+            margin-bottom: 0
+            text-transform: capitalize
+            transition: all .3s
+            border-radius: .5rem
+
+            &:hover
+                background-color: var(--base)
+
+@media screen and (max-width: 1200px)
+    .policies_wrapper
+        grid-template-columns: 1fr
+        grid-template-areas: "sidebar" "content"
+        gap: 1rem
+
+    .table_wrapper
+        overflow-x: auto
+        width: auto
+        table
+            width: 100%
+
+    .toc
+        display: none

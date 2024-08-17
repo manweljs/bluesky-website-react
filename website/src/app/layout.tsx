@@ -4,6 +4,7 @@ import { Bai_Jamjuree } from "next/font/google";
 import "antd/dist/reset.css";
 import '@flaticon/flaticon-uicons/css/all/all.css';
 import s from "@/styles/style.module.sass"
+import Wrapper from "./Wrapper";
 
 const inter = Bai_Jamjuree({ subsets: ["latin"], weight: ['400', '700', '600', '500'] });
 
@@ -19,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={s.bluesky}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Wrapper>
+          {children}
+        </Wrapper>
+      </body>
     </html>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import Navbar from '@/components/Navbar';
 import { AppProvider } from '@/context'
 import AntdRegistry from '@/context/AntdRegistry';
 import React from 'react'
@@ -9,6 +10,7 @@ export default function Wrapper(
     return (
         <AppProvider>
             <AntdRegistry>
+                <Navbar />
                 {children}
             </AntdRegistry>
         </AppProvider>
