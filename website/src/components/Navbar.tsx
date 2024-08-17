@@ -8,7 +8,7 @@ import s from "@/styles/style.module.sass"
 import { cls } from '@/utils';
 import { Button } from 'antd';
 import FIcon from './ui/FIcon';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 
 export default function Navbar() {
@@ -16,7 +16,6 @@ export default function Navbar() {
   const [minimized, setMinimized] = useState(false);
   const { page, setPage, navigate, slide, setSlide, swiperRef, setAllowSlideNext, setAllowSlidePrev } = useAppContext()
   const pathName = usePathname()
-  const searchParams = useSearchParams();
 
 
   useEffect(() => {
