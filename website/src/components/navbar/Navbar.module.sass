@@ -244,6 +244,7 @@
         bottom: -100px
         left: 0
         filter: grayscale(1) brightness(2)
+        opacity: .5
 
 .navbar_mobile .background.open div
     transform: translateX(0)
@@ -255,3 +256,22 @@
     .navbar_mobile
         opacity: 1
         visibility: visible
+
+@media screen  and (max-width: $tablet)
+    .navbar_mobile .links
+        font-size: 2.5rem
+        padding: 1rem
+        height: 100svh
+        display: flex
+        flex-direction: column
+        justify-content: center
+
+        .link
+            padding: 1rem
+
+@media screen  and (max-width: $mobile)
+    .navbar_mobile .links
+        font-size: 1.5rem
+
+        .link
+            padding: 1rem

@@ -1,3 +1,5 @@
+@use '../../styles/style.module.sass' as *
+
 @property --var1
     syntax: "<color>"
     inherits: true
@@ -127,3 +129,12 @@
 
     .toc
         display: none
+
+@media screen  and (max-width: $tablet)
+    .policies
+        section
+            padding: 0!important
+
+    .policies
+        .legal_heading
+            padding: 8rem 1rem 5rem

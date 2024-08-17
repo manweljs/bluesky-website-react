@@ -115,6 +115,7 @@ $footer_height: 200px
             transform: translate(-50%, 0)
             text-align: center
             z-index: -1
+            padding: 0 1rem
 
     .image_box
         background-color: var(--white)
@@ -271,15 +272,40 @@ $footer_height: 200px
         h2
             font-size: 2rem
 
+        h3
+            font-size: 1.5rem
+
         section
             min-height: unset
 
-        .product
-            .container
-                grid-template-columns: 1fr
-                grid-template-areas: "text" "image"
+    .product
+        .container
+            grid-template-columns: 1fr
+            grid-template-areas: "text" "image"
+
+    .about, .collaboration, .blog, .product
+        .container
+            padding: 4rem 1.5rem
+
+    .footer
+        height: auto
+        padding: 3rem 1rem
+        text-align: center
+
+        .links
+            flex-direction: column
+            height: unset
+            margin: 1.5rem auto
 
     .contact
         .contact_container
             grid-template-columns: 1fr!important
             grid-template-areas: "image" "form"!important
+
+    .contact.section
+        grid-template-rows: 1fr auto
+
+@media screen  and (max-width: $mobile)
+    .home
+        .animation_container
+            top: 20svh!important

@@ -138,7 +138,9 @@ export default function Home() {
                 >
                     <SwiperSlide><Hero /></SwiperSlide>
                     <SwiperSlide><About /></SwiperSlide>
-                    <SwiperSlide><Collaboration /></SwiperSlide>
+                    <SwiperSlide
+                        style={{ overflow: 'auto' }}
+                    ><Collaboration /></SwiperSlide>
                     <SwiperSlide>
                         <Swiper
                             ref={nestedSwiperRef}
