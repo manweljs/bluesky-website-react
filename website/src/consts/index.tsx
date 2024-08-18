@@ -4,6 +4,7 @@ export const BRAND_NAME = "BlueSky Creations"
 export const INFO_EMAIL = "info@" + DOMAIN
 export const SUPPORT_EMAIL = "support@" + DOMAIN
 export const BILLING_EMAIL = "billing@" + DOMAIN
+export const BSBLOG_API_URL = "https://api.pluvoo.com"
 
 export enum PATH {
     HOME = "/",
