@@ -11,7 +11,6 @@ const Article = dynamic(() => import('./Article')
 export default function page(props: { params: { slug: string } }) {
     const { slug } = props.params
     const privateKey = process.env.PRIVATE_KEY || ''
-    console.log('privateKey', privateKey)
     return (
         <div className={s.article}>
             <Article

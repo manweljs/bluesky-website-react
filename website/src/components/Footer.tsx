@@ -8,7 +8,7 @@ export default function Footer() {
     const year = new Date().getFullYear()
     return (
         <div className={s.footer}>
-            <Image src="bluesky-icon.svg" alt="bluesky" width={50} height={50} />
+            <Image src="/bluesky-icon.svg" alt="bluesky" width={50} height={50} />
 
             <div className={s.links}>
                 {legals.map((legal, index) => (

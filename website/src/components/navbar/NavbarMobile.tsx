@@ -68,9 +68,6 @@ export const NavbarMobile = ({
     }, [open]);
 
 
-
-    const backgroundColor = "#000000"
-
     return (
 
         <div className={s.navbar_mobile}>

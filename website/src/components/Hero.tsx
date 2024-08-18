@@ -72,6 +72,7 @@ export default function Hero({ isMobile }: { isMobile?: boolean }) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.5, type: "spring", duration: 0.5 }}
+                            style={{ fontSize: '1.2rem' }}
                         >{contents.heading.subtitle}</motion.h6>
                     </div>
                 </div>

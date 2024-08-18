@@ -69,8 +69,8 @@ const content = <>
     <h2>Risk Categories</h2>
     <p>There are different risk categories depending on the type of application, and one specifically dedicated to general-purpose generative AI.</p>
     <Image
-        width={1200}
-        height={800}
+        width={1229}
+        height={614}
         src={'/images/risk-category.png'}
         alt="Risk Categories"
     />
