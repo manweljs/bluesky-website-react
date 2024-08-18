@@ -13,7 +13,9 @@ export default function Blog({ isMobile }: { isMobile?: boolean }) {
     return (
         <motion.section className={s.blog} id={isMobile ? "blog" : ""}>
             <div className={s.blog_wrapper}>
-                <h3>Blog</h3>
+                <h3
+                    style={{ textAlign: "center" }}
+                >Blog</h3>
                 <CoreProvider
                     appId={APP_ID}
                 >
