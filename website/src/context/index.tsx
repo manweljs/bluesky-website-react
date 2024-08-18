@@ -13,6 +13,7 @@ interface AppContextType {
     setAllowSlideNext: Dispatch<SetStateAction<boolean>>;
     allowSlidePrev: boolean;
     setAllowSlidePrev: Dispatch<SetStateAction<boolean>>;
+    isMobile: boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -28,6 +29,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const swiperRef = useRef<any | null>(null);
     const [allowSlideNext, setAllowSlideNext] = useState(true);
     const [allowSlidePrev, setAllowSlidePrev] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+
 
     const navigate = (path: string, _blank?: boolean | "_blank") => {
         if (_blank) {
@@ -36,6 +39,20 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
             router.push(path);
         }
     }
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 1024);
+        };
+
+        handleResize(); // Set awal
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const value = {
         page,
@@ -48,6 +65,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setAllowSlideNext,
         allowSlidePrev,
         setAllowSlidePrev,
+        isMobile
     };
 
     useEffect(() => {

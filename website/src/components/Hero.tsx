@@ -35,7 +35,7 @@ const HeadingAnimation = ({ text }: { text: string }) => {
 };
 
 
-export default function Hero() {
+export default function Hero({ isMobile }: { isMobile?: boolean }) {
     const imageBoxVariants = {
         initial: {
             opacity: 1,
@@ -62,7 +62,7 @@ export default function Hero() {
     }
 
     return (
-        <section className={s.home} >
+        <section className={s.home} id={isMobile ? "home" : ""}>
             <ParticlesContainer />
             <div className={s.content_holder} >
                 <div className={s.text_box}>

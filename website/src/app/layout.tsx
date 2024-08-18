@@ -19,7 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={s.bluesky}>
+    <html
+      lang="en"
+      className={s.bluesky}
+      suppressHydrationWarning={process.env.NODE_ENV === "development"}>
       <body className={inter.className}>
         <Wrapper>
           {children}

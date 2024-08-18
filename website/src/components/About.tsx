@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import s from "@/styles/style.module.sass"
 import { Container } from './ui/Container';
 
-export default function About() {
+export default function About({ isMobile }: { isMobile?: boolean }) {
 
     return (
-        <motion.section className={s.about}>
+        <motion.section className={s.about} id={isMobile ? "about" : ""}>
             <Container className={s.container}>
                 <h2><span className={s.text_primary}>About: </span> Who we are and what we stand for</h2>
                 <p>

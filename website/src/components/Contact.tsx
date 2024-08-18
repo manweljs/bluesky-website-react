@@ -8,22 +8,20 @@ import { Container } from './ui/Container';
 import { Laptop } from '@/store/outline-images/Laptop';
 import { cls } from '@/utils';
 
-export default function Contact() {
+export default function Contact({ isMobile }: { isMobile?: boolean }) {
     return (
-        <div className={s.contact_n_footer}>
-            <motion.section className={cls(s.contact, s.section)}>
-                <Container className={s.container}>
-                    <h3>Ready to see the power of <span className={s.text_primary}>Bluesky Creations</span>  in action?</h3>
-                    <p>Contact us today to schedule a demo and discover how we can help you optimize your business</p>
-                    <div className={s.contact_container}>
-                        <div className={s.image}>
-                            <Laptop />
-                        </div>
-                        <ContactForm />
+        <motion.section className={cls(s.contact, s.section)} id={isMobile ? "contact" : ""}>
+            <Container className={s.container}>
+                <h3>Ready to see the power of <span className={s.text_primary}>Bluesky Creations</span>  in action?</h3>
+                <p>Contact us today to schedule a demo and discover how we can help you optimize your business</p>
+                <div className={s.contact_container}>
+                    <div className={s.image}>
+                        <Laptop />
                     </div>
-                </Container>
-            </motion.section>
-        </div>
+                    <ContactForm />
+                </div>
+            </Container>
+        </motion.section>
 
     )
 }

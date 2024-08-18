@@ -18,27 +18,11 @@ const Blog = dynamic(() => import('@/components/Blog'), { ssr: false });
 
 export default function Home() {
     const { slide, setSlide, swiperRef, allowSlideNext, setAllowSlideNext,
-        allowSlidePrev, setAllowSlidePrev
+        allowSlidePrev, setAllowSlidePrev, isMobile
     } = useAppContext();
 
-    const [isMobile, setIsMobile] = useState(false);
-    const [mousewheel, setMousewheel] = useState(true);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 1024);
-        };
-
-        handleResize(); // Set awal
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const nestedSwiperRef = useRef<any | null>(null);
-
 
     const [nestedAtEnd, setNestedAtEnd] = useState(false);
     const [nestedAtBeginning, setNestedAtBeginning] = useState(true);
@@ -125,14 +109,17 @@ export default function Home() {
         return (
             <main >
                 <Navbar />
-                <Hero />
-                <About />
-                <Collaboration />
-                {productList.map((product, index) => (
-                    <Product product={product} key={index} />
-                ))}
-                <Blog />
-                <Contact />
+                <Hero isMobile />
+                <About isMobile />
+                <Collaboration isMobile />
+                <div id='products'>
+                    {productList.map((product, index) => (
+                        <Product product={product} key={index} />
+                    ))}
+                </div>
+                <Blog isMobile />
+                <Contact isMobile />
+                <Footer />
             </main>
         );
     }
@@ -152,7 +139,7 @@ export default function Home() {
 
                     onSlideChange={handleSlideChange}
                     navigation={false}
-                    mousewheel={mousewheel}
+                    mousewheel={true}
                     modules={[Pagination, Navigation, Mousewheel, EffectCreative]}
                     style={{ height: '100%' }}
                     allowSlideNext={allowSlideNext}

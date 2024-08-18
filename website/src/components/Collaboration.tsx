@@ -5,7 +5,7 @@ import { Container } from './ui/Container';
 import s from '@/styles/style.module.sass';
 import { useAppContext } from '@/context';
 
-export default function Collaboration() {
+export default function Collaboration({ isMobile }: { isMobile?: boolean }) {
     const playerRef = useRef<any>(null);
     const { slide } = useAppContext();
 
@@ -46,7 +46,7 @@ export default function Collaboration() {
     }, [slide]);
 
     return (
-        <motion.section className={s.collaboration}>
+        <motion.section className={s.collaboration} id={isMobile ? "collaboration" : ""}>
             <Container className={s.container}>
                 <h3>Coles and IBM Collaboration</h3>
                 <p>

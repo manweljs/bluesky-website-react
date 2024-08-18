@@ -10,7 +10,7 @@ import { Logo } from '@/store/svg'
 export const NavbarMobile = ({
     handleNavClick
 }: {
-    handleNavClick: (target: string) => void
+    handleNavClick: (target: string, isMobile?: boolean) => void
 }) => {
 
     const [open, setOpen] = React.useState(false)
@@ -20,7 +20,7 @@ export const NavbarMobile = ({
     const handleMenuClick = (link: string) => {
         console.log('clicked')
         setOpen(false)
-        handleNavClick(link)
+        handleNavClick(link, true)
     }
 
     useEffect(() => {
