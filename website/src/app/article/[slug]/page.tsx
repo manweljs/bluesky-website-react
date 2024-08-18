@@ -37,20 +37,22 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     // read route params
     const slug = params.slug
-
-    // fetch data
+    // fetch data from API
     const endpoint = `${BSBLOG_API_URL}/api/Article/Share/GetArticleBySlug?slug=${slug}&app_id=${APP_ID}`
-    const response = await fetch(endpoint)
-    const result = await response.json()
 
-    // optionally access and extend (rather than replace) parent metadata
-    const previousImages = (await parent).openGraph?.images || []
+    try {
+        const response = await fetch(endpoint)
+        const result = await response.json()
+        return {
+            title: result.data.meta_title,
+            description: result.data.meta_description,
+            openGraph: {
+                images: [result.data.image],
+            },
+        }
 
-    return {
-        title: result.data.meta_title,
-        description: result.data.meta_description,
-        openGraph: {
-            images: [result.data.image, ...previousImages],
-        },
+    } catch (error) {
+        return {}
     }
+
 }
