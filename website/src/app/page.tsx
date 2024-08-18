@@ -1,10 +1,11 @@
 
 import React from "react";
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-creative';
-import 'swiper/css/effect-cards';
+import 'swiper/scss';
+import 'swiper/scss/pagination';
+import 'swiper/scss/navigation';
+import 'swiper/scss/effect-creative';
+import 'swiper/scss/effect-cards';
+import 'swiper/scss/mousewheel'
 import "bsblog/dist/style.css";
 import Home from "./Home";
 

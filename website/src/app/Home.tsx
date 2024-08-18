@@ -17,8 +17,12 @@ import dynamic from 'next/dynamic';
 const Blog = dynamic(() => import('@/components/Blog'), { ssr: false });
 
 export default function Home() {
+    const { slide, setSlide, swiperRef, allowSlideNext, setAllowSlideNext,
+        allowSlidePrev, setAllowSlidePrev
+    } = useAppContext();
 
     const [isMobile, setIsMobile] = useState(false);
+    const [mousewheel, setMousewheel] = useState(true);
 
     useEffect(() => {
         const handleResize = () => {
@@ -34,19 +38,48 @@ export default function Home() {
     }, []);
 
     const nestedSwiperRef = useRef<any | null>(null);
-    const { slide, setSlide, swiperRef, allowSlideNext, setAllowSlideNext,
-        allowSlidePrev, setAllowSlidePrev
-    } = useAppContext();
+
 
     const [nestedAtEnd, setNestedAtEnd] = useState(false);
     const [nestedAtBeginning, setNestedAtBeginning] = useState(true);
+
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+
+        const container = containerRef.current;
+
+        const handleScroll = (event: WheelEvent) => {
+            const swiper = swiperRef.current?.swiper;
+
+            if (swiper && event.deltaY < 0 && container?.scrollTop === 0) { // Menggulung ke atas
+                swiper.mousewheel.enable(); // Mengaktifkan kembali mousewheel
+            }
+        };
+
+        if (container) {
+            container.addEventListener('wheel', handleScroll);
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('wheel', handleScroll);
+            }
+        };
+    }, []);
 
     const handleSlideChange = () => {
         const swiper = swiperRef.current?.swiper;
         if (swiper) {
             const currentSlideIndex = swiper.activeIndex;
-            console.log("Slide berubah ke:", currentSlideIndex);
+            // console.log("Slide berubah ke:", currentSlideIndex);
             setSlide(currentSlideIndex);
+
+            if (currentSlideIndex === 5) {
+                swiper.mousewheel.disable()
+            } else {
+                swiper.mousewheel.enable()
+            }
 
             if (currentSlideIndex === 3) {
                 setAllowSlideNext(nestedAtEnd);
@@ -67,6 +100,8 @@ export default function Home() {
         setNestedAtBeginning(true);
         setAllowSlidePrev(true);
     };
+
+
 
     const handleNestedSlideChange = () => {
         const nestedSwiper = nestedSwiperRef.current?.swiper;
@@ -101,8 +136,10 @@ export default function Home() {
             </main>
         );
     }
+
+
     return (
-        <div style={{ backgroundColor: "#000" }}>
+        <div style={{ backgroundColor: "#000" }} >
             <Navbar />
             <div style={{ height: '100svh' }}>
                 <Swiper
@@ -115,7 +152,7 @@ export default function Home() {
 
                     onSlideChange={handleSlideChange}
                     navigation={false}
-                    mousewheel={true}
+                    mousewheel={mousewheel}
                     modules={[Pagination, Navigation, Mousewheel, EffectCreative]}
                     style={{ height: '100%' }}
                     allowSlideNext={allowSlideNext}
@@ -178,10 +215,14 @@ export default function Home() {
                         </Swiper>
                     </SwiperSlide>
                     <SwiperSlide><Blog /></SwiperSlide>
-                    <SwiperSlide><Contact /></SwiperSlide>
+                    <SwiperSlide >
+                        <div ref={containerRef} style={{ height: '100%', overflow: 'auto' }}>
+                            <Contact />
+                            <Footer />
+                        </div>
+                    </SwiperSlide>
                 </Swiper>
             </div>
-            {/* <Footer /> */}
         </div>
     );
 }

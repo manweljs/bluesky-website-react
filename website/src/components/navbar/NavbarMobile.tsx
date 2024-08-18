@@ -57,13 +57,6 @@ export const NavbarMobile = ({
                             className={cls(s.link, slide === index && s.active)}
                         >
                             <span>{item}</span>
-                            {slide === index &&
-                                <motion.span
-                                    layoutId='underline'
-                                    className={s.underline}
-                                    style={{ originY: "top" }}
-                                />
-                            }
                         </motion.div>
                     ))}
                 </div>

@@ -89,17 +89,16 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className={cls(s.nav_item, s.link)}>
+          <div className={cls(s.nav_item, s.links)}>
             {sections.map((item, index) => (
               <motion.div
-                style={{ cursor: "pointer" }}
                 onClick={() => handleNavClick(`/#${item}`)} key={index}
-                className={cls(s.is_link, slide === index && s.active)}
+                className={cls(s.link, slide === index && s.active)}
               >
                 <span>{item}</span>
                 {slide === index &&
                   <motion.span
-                    layoutId='underline'
+                    layoutId='link_underline'
                     className={s.underline}
                     style={{ originY: "top" }}
                   />

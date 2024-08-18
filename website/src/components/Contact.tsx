@@ -10,20 +10,20 @@ import { cls } from '@/utils';
 
 export default function Contact() {
     return (
-
-        <motion.section className={cls(s.contact, s.section)}>
-            <Container className={s.container}>
-                <h3>Ready to see the power of <span className={s.text_primary}>Bluesky Creations</span>  in action?</h3>
-                <p>Contact us today to schedule a demo and discover how we can help you optimize your business</p>
-                <div className={s.contact_container}>
-                    <div className={s.image}>
-                        <Laptop />
+        <div className={s.contact_n_footer}>
+            <motion.section className={cls(s.contact, s.section)}>
+                <Container className={s.container}>
+                    <h3>Ready to see the power of <span className={s.text_primary}>Bluesky Creations</span>  in action?</h3>
+                    <p>Contact us today to schedule a demo and discover how we can help you optimize your business</p>
+                    <div className={s.contact_container}>
+                        <div className={s.image}>
+                            <Laptop />
+                        </div>
+                        <ContactForm />
                     </div>
-                    <ContactForm />
-                </div>
-            </Container>
-            <Footer />
-        </motion.section>
+                </Container>
+            </motion.section>
+        </div>
 
     )
 }
