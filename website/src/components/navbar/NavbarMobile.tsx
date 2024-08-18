@@ -3,9 +3,42 @@ import { useAppContext } from '@/context'
 import s from "./Navbar.module.sass"
 import React, { useEffect, useState } from 'react'
 import { sections } from '@/store'
-import { motion } from 'framer-motion'
+import { color, motion } from 'framer-motion'
 import { cls } from '@/utils'
 import { Logo } from '@/store/svg'
+
+const icons = [
+    {
+        href: "/icons/icon-MO.svg",
+        color: "#0062ff"
+    },
+    {
+        href: "/icons/icon-SQ.svg",
+        color: "#7310eb"
+    },
+    {
+        href: "/icons/icon-OP.svg",
+        color: "#ff5e29"
+    },
+    {
+        href: "/icons/icon-AC.svg",
+        color: "#065bf7"
+    },
+    {
+        href: "/icons/icon-RC.svg",
+        color: "#00be68"
+    },
+    {
+        href: "/icons/icon-BS.svg",
+        color: "#0062ff"
+    },
+]
+
+const getRandomIcon = () => {
+    const index = Math.floor(Math.random() * icons.length);
+    return icons[index];
+};
+
 
 export const NavbarMobile = ({
     handleNavClick
@@ -14,8 +47,12 @@ export const NavbarMobile = ({
 }) => {
 
     const [open, setOpen] = React.useState(false)
-    const [brand, setBrand] = useState<string>("/icons/icon-AC.svg")
+    const [brand, setBrand] = useState<{
+        href: string;
+        color: string;
+    }>(icons[0])
     const { slide } = useAppContext()
+
 
     const handleMenuClick = (link: string) => {
         console.log('clicked')
@@ -25,7 +62,8 @@ export const NavbarMobile = ({
 
     useEffect(() => {
         if (open) {
-            setBrand("/icons/icon-AC.svg")
+            const brand = getRandomIcon()
+            setBrand(brand)
         }
     }, [open]);
 
@@ -61,13 +99,13 @@ export const NavbarMobile = ({
                     ))}
                 </div>
 
-                <div className={cls(s.background, open && s.open)}>
-                    <div style={{ backgroundColor: backgroundColor }} />
-                    <div style={{ backgroundColor: backgroundColor }} />
-                    <div style={{ backgroundColor: backgroundColor }} />
-                    <div style={{ backgroundColor: backgroundColor }} />
-                    <div style={{ backgroundColor: backgroundColor }} />
-                    <img src={brand} alt="" />
+                <div className={cls(s.background, open && s.open)} >
+                    <div style={{ backgroundColor: brand.color }} />
+                    <div style={{ backgroundColor: brand.color }} />
+                    <div style={{ backgroundColor: brand.color }} />
+                    <div style={{ backgroundColor: brand.color }} />
+                    <div style={{ backgroundColor: brand.color }} />
+                    <img src={brand.href} alt="" />
                 </div>
             </div>
 
