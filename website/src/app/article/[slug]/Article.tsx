@@ -12,7 +12,7 @@ const CoreProvider = dynamic(() => import('bsblog').then(mod => mod.CoreProvider
 
 export function Article({ slug, privateKey }: { slug: string, privateKey: string }) {
     return (
-        <div className={cls(s.blog, s.article_detail)}>
+        <div className={cls(s.blog_article, s.article_detail)}>
             <CoreProvider
                 appId={APP_ID}
                 navbarHeight={80}

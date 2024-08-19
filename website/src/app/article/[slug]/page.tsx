@@ -1,11 +1,10 @@
 import React from 'react'
-// import { Article } from './Article'
+import { Article } from './Article'
 import s from '../Article.module.sass'
 import 'bsblog/dist/style.css'
 import dynamic from 'next/dynamic'
 import { Metadata, ResolvingMetadata } from 'next'
 import { APP_ID, BSBLOG_API_URL } from '@/consts'
-import { Article } from './Article'
 
 
 interface Props {
