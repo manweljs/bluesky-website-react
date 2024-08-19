@@ -16,6 +16,7 @@ export function Article({ slug, privateKey }: { slug: string, privateKey: string
             <CoreProvider
                 appId={APP_ID}
                 navbarHeight={80}
+                
             >
                 <ArticleDetail
                     slug={slug}

@@ -5,9 +5,8 @@ import 'bsblog/dist/style.css'
 import dynamic from 'next/dynamic'
 import { Metadata, ResolvingMetadata } from 'next'
 import { APP_ID, BSBLOG_API_URL } from '@/consts'
+import { Article } from './Article'
 
-const Article = dynamic(() => import('./Article')
-    .then(mod => mod.Article), { ssr: false })
 
 interface Props {
     params: {
@@ -15,9 +14,13 @@ interface Props {
     }
 }
 
-export default function page(props: Props) {
+export default async function page(props: Props) {
     const { slug } = props.params
     const privateKey = process.env.PRIVATE_KEY || ''
+    const response = await getArticle(slug)
+    if (!response?.id) {
+        return <div>Article not found</div>
+    }
     return (
         <div className={s.article}>
             <Article
@@ -37,24 +40,23 @@ const getArticle = async (slug: string) => {
 }
 
 
-
 export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
     const slug = params.slug
-
-
     try {
-        const response = await getArticle(slug)
-        // console.log('response :>> ', response);
+        const article = await getArticle(slug)
+        if (!article?.id) {
+            return {}
+        }
         return {
-            title: response.meta_title,
-            description: response.meta_description,
-            keywords: response.tags,
+            title: article.meta_title || article.title,
+            description: article.meta_description,
+            keywords: article.tags,
             openGraph: {
-                images: [response.data.image],
+                images: [article.image],
             },
         }
 
