@@ -50,9 +50,9 @@ export async function generateMetadata(
         const response = await getArticle(slug)
         // console.log('response :>> ', response);
         return {
-            title: response.data.meta_title,
-            description: response.data.meta_description,
-            keywords: response.data.tags,
+            title: response.meta_title,
+            description: response.meta_description,
+            keywords: response.tags,
             openGraph: {
                 images: [response.data.image],
             },
