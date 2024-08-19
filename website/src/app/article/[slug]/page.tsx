@@ -2,7 +2,6 @@ import React from 'react'
 // import { Article } from './Article'
 import s from '../Article.module.sass'
 import 'bsblog/dist/style.css'
-
 import dynamic from 'next/dynamic'
 import { Metadata, ResolvingMetadata } from 'next'
 import { APP_ID, BSBLOG_API_URL } from '@/consts'
@@ -41,7 +40,7 @@ export async function generateMetadata(
     const endpoint = `${BSBLOG_API_URL}/api/Article/Share/GetArticleBySlug?slug=${slug}&app_id=${APP_ID}`
 
     try {
-        const response = await fetch(endpoint)
+        const response = await fetch(endpoint,{cache: "no-store"})
         const result = await response.json()
         return {
             title: result.data.meta_title,
