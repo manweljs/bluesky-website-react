@@ -29,6 +29,14 @@ export default function page(props: Props) {
 }
 
 
+const getArticle = async (slug: string) => {
+    const endpoint = `${BSBLOG_API_URL}/api/Article/Share/GetArticleBySlug?slug=${slug}&app_id=${APP_ID}`
+    const response = await fetch(endpoint, {method: "GET", cache: "no-store"})
+    const result = await response.json()
+    return result.data
+}
+
+
 
 export async function generateMetadata(
     { params }: Props,
@@ -36,17 +44,17 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     // read route params
     const slug = params.slug
-    // fetch data from API
-    const endpoint = `${BSBLOG_API_URL}/api/Article/Share/GetArticleBySlug?slug=${slug}&app_id=${APP_ID}`
+
 
     try {
-        const response = await fetch(endpoint,{cache: "no-store"})
-        const result = await response.json()
+        const response = await getArticle(slug)
+        // console.log('response :>> ', response);
         return {
-            title: result.data.meta_title,
-            description: result.data.meta_description,
+            title: response.data.meta_title,
+            description: response.data.meta_description,
+            keywords: response.data.tags,
             openGraph: {
-                images: [result.data.image],
+                images: [response.data.image],
             },
         }
 
