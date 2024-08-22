@@ -3,7 +3,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import s from "@/styles/style.module.sass"
 import { ArticleList } from 'bsblog';
-import dynamic from 'next/dynamic';
 
 import { APP_ID, PATH, PRIMARY_COLOR } from '@/consts';
 import { Button } from 'antd';

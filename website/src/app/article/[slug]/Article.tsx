@@ -11,12 +11,12 @@ const ArticleDetail = dynamic(() => import('bsblog').then(mod => mod.ArticleDeta
 export function Article({ slug, privateKey }: { slug: string, privateKey: string }) {
     return (
         <div className={cls(s.blog, s.article_detail)}>
-
-            <ArticleDetail
-                slug={slug}
-                privateKey={privateKey}
-
-            />
+            <div className={s.article_detail_wrapper}>
+                <ArticleDetail
+                    slug={slug}
+                    privateKey={privateKey}
+                />
+            </div>
             <Footer />
         </div>
     )

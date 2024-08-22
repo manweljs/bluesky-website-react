@@ -18,7 +18,9 @@ export function Blog() {
     return (
         <div className={s.blog}>
             <PageHeading content={content} className={s.heading} />
-            <ArticleList />
+            <div className={s.article_list_wrapper}>
+                <ArticleList />
+            </div>
             <Footer />
         </div>
     )
