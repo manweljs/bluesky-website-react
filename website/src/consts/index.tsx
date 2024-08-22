@@ -1,6 +1,7 @@
 export const DOMAIN = "blueskycreations.com.au"
 export const APP_ID = "dd71e5e9-1904-4500-86c7-f5b4e8f03986"
 export const BRAND_NAME = "BlueSky Creations"
+export const PRIMARY_COLOR = `#02488F`
 export const INFO_EMAIL = "info@" + DOMAIN
 export const SUPPORT_EMAIL = "support@" + DOMAIN
 export const BILLING_EMAIL = "billing@" + DOMAIN

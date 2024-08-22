@@ -80,6 +80,11 @@ export default function Navbar() {
             handleSlideChange(sections.indexOf(target.replace('/#', '')))
             return
         } else {
+            console.log('target', target)
+            if (target === "/#blog") {
+                navigate("/blog")
+                return
+            }
             window.location.href = target
         }
     }
