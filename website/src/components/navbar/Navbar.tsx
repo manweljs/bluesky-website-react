@@ -53,21 +53,28 @@ export default function Navbar() {
 
     const handleNavClick = (target: string, isMobile: boolean = false) => {
         console.log('pathName', pathName)
+
         if (pathName === "/") {
             const scrollToElement = () => {
-                const id = target.replace('/', '');
-                const element = document.querySelector(id);
+                try {
+                    const id = target.replace('/', '');
+                    const element = document.querySelector(id);
 
-                if (element) {
-                    console.log('element', element);
-                    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - 60;
+                    if (element) {
+                        console.log('element', element);
+                        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - 60;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                    });
-                } else {
-                    setTimeout(scrollToElement, 100);
+                        window.scrollTo({
+                            top: offsetPosition,
+                        });
+                    } else {
+                        setTimeout(scrollToElement, 100);
+                    }
+
+                } catch (e) {
+                    console.log('error', e)
+                    return
                 }
             };
 
